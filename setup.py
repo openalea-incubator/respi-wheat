@@ -1,10 +1,21 @@
 # -*- coding: latin-1 -*-
 """
-Notes:
 
-- use setup.py develop when tracking in-development code
-- when removing modules or data files from the project, run setup.py clean --all and delete any obsolete .pyc or .pyo.
+    setup
+    ~~~~~
+    
+    Setup script for installation.
+    
+    See README.rst for installing procedure.
 
+    :copyright: Copyright 2014-2017 INRA-ECOSYS, see AUTHORS.
+    :license: CeCILL-C, see LICENSE for details.
+    
+    **Acknowledgments**: The research leading these results has received funding through the 
+    Investment for the Future programme managed by the Research National Agency 
+    (BreedWheat project ANR-10-BTBR-03).
+    
+    .. seealso:: Barillot et al. 2016.
 """
 
 """
@@ -40,11 +51,11 @@ setup(
 
     # metadata for upload to PyPI
     author = "C.Chambon, R.Barillot",
-    author_email = "camille.chambon@grignon.inra.fr, romain.barillot@grignon.inra.fr",
+    author_email = "camille.chambon@inra.fr, romain.barillot@inra.fr",
     description = "Model of respiration adapted to wheat ",
     long_description = "Modèle de respiration associée aux principales fonctions physiologiques végétales. Inspiré des travaux de Cannell et Thornley (2000).",
-    license = "", # TODO
+    license = "CeCILL-C", 
     keywords = "", # TODO
     url = "https://sourcesup.renater.fr/projects/respi-wheat/",
-    download_url = "", # TODO
+    download_url = "https://sourcesup.renater.fr/frs/download.php/latestzip/2087/Respi-WheatPublic-latest.zip",
 )

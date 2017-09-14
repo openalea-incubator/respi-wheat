@@ -57,5 +57,5 @@ setup(
     license = "CeCILL-C", 
     keywords = "", # TODO
     url = "https://sourcesup.renater.fr/projects/respi-wheat/",
-    download_url = "https://sourcesup.renater.fr/frs/download.php/latestzip/2087/Respi-WheatPublic-latest.zip",
+    download_url = "https://sourcesup.renater.fr/frs/download.php/latestzip/2087/Respi-Wheat-Stable-latest.zip",
 )

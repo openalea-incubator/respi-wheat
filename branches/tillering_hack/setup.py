@@ -53,7 +53,7 @@ setup(
     author = "C.Chambon, R.Barillot",
     author_email = "camille.chambon@inra.fr, romain.barillot@inra.fr",
     description = "Model of respiration adapted to wheat ",
-    long_description = "Modèle de respiration associée aux principales fonctions physiologiques végétales. Inspiré des travaux de Cannell et Thornley (2000).",
+    long_description = "Model of respiration adapted to the main physiological processes of wheat. Adapted from Cannell et Thornley (2000).",
     license = "CeCILL-C", 
     keywords = "", # TODO
     url = "https://sourcesup.renater.fr/projects/respi-wheat/",

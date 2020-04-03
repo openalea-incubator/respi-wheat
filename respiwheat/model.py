@@ -24,37 +24,36 @@ from __future__ import division  # use '//' to do integer division
 
 
 class RespirationModel(object):
-
     SECOND_TO_HOUR_RATE_CONVERSION = 3600
 
     # R_growth#
-    YG = 0.8               # Growth yield (units of C appearing in new biomass per unit of C substrate utilized for growth). Range 0±75 to 0±85 in Cannell and Thornley, 2000.
+    YG = 0.8  # Growth yield (units of C appearing in new biomass per unit of C substrate utilized for growth). Range 0±75 to 0±85 in Cannell and Thornley, 2000.
 
-    YG_GRAINS = 0.71       # Growth yield (units of C appearing in new biomass per unit of C substrate utilized for growth)
+    YG_GRAINS = 0.71  # Growth yield (units of C appearing in new biomass per unit of C substrate utilized for growth)
 
     # R_phloem#
-    CPHLOEM = 0.006        # Units C respired per unit C substrate loaded into the phloem
+    CPHLOEM = 0.006  # Units C respired per unit C substrate loaded into the phloem
 
     # R_Namm_upt#
-    C_AMM_UPT = 0.198      # µmol of C substrate respired per µmol of N ammonium taken up
+    C_AMM_UPT = 0.198  # µmol of C substrate respired per µmol of N ammonium taken up
 
     # R_Nnit_upt#
-    C_NIT_UPT = 0.397      # µmol of C substrate respired per µmol of N nitrates taken up
+    C_NIT_UPT = 0.397  # µmol of C substrate respired per µmol of N nitrates taken up
 
     # R_Nnit_red#
     F_NIT_RED_SH_CS = 0.5  # fraction of nitrate reduced in shoot using C substrate rather than using excess ATP and reducing power obtained directly from photosynthesis
-    C_NIT_RED = 1.98       # µmol of C substrate per µmol of N nitrates reduced
+    C_NIT_RED = 1.98  # µmol of C substrate per µmol of N nitrates reduced
 
     # R_N2fix #
-    C_NFIX = 6             # kg substrate C respired (kg N fixed)-1 (in the range  5 to 12)
+    C_NFIX = 6  # kg substrate C respired (kg N fixed)-1 (in the range  5 to 12)
 
     # R_min_upt #
-    CMIN_UPT = 5000        # µmol of C substrate respired per g of minerals taken up
-    ASHE_CONTENT = 0.05    # g minerals per g of structural dry mass
+    CMIN_UPT = 5000  # µmol of C substrate respired per g of minerals taken up
+    ASHE_CONTENT = 0.05  # g minerals per g of structural dry mass
 
     # R_residual #
     KM_MAX = 4.1E-6  # 8E-6 # 4.1E-6       # Maximum value of the maintenance constant when C is much greater than KM (µmol of C substrate respired per µmol N s-1)
-    KM = 1.67E3           # The Michaelis-Menten constant affinity i.e. the C substrate concentration at half the value of KM_MAX (µmol of C substrate per g of structural mass)
+    KM = 1.67E3  # The Michaelis-Menten constant affinity i.e. the C substrate concentration at half the value of KM_MAX (µmol of C substrate per g of structural mass)
 
     @classmethod
     def R_growth(cls, mstruct_growth):
@@ -79,8 +78,8 @@ class RespirationModel(object):
         :return: R_grain_growth_struct, R_grain_growth_starch (µmol C respired)
         :rtype: (float, float)
         """
-        R_grain_growth_struct = ((1 - cls.YG_GRAINS)/cls.YG_GRAINS) * mstruct_growth
-        R_grain_growth_starch = ((1 - cls.YG_GRAINS)/cls.YG_GRAINS) * (starch_filling*mstruct)
+        R_grain_growth_struct = ((1 - cls.YG_GRAINS) / cls.YG_GRAINS) * mstruct_growth
+        R_grain_growth_starch = ((1 - cls.YG_GRAINS) / cls.YG_GRAINS) * (starch_filling * mstruct)
         return R_grain_growth_struct, R_grain_growth_starch
 
     @classmethod
@@ -142,11 +141,11 @@ class RespirationModel(object):
         if not root:
             R_Nnit_red = cls.F_NIT_RED_SH_CS * cls.C_NIT_RED * s_amino_acids * mstruct  # Respiration in shoot tissues
         else:
-            R_Nnit_red = cls.C_NIT_RED * s_amino_acids * mstruct                         # Respiration in root tissues
+            R_Nnit_red = cls.C_NIT_RED * s_amino_acids * mstruct  # Respiration in root tissues
 
-#        if sucrose < R_Nnit_red:
-#            R_Nnit_red = 0
-#            s_amino_acids = 0
+        #        if sucrose < R_Nnit_red:
+        #            R_Nnit_red = 0
+        #            s_amino_acids = 0
         return R_Nnit_red, s_amino_acids
 
     @classmethod
@@ -192,15 +191,15 @@ class RespirationModel(object):
         :rtype: (float, float)
         """
 
-        Q10 = 2
-        T_ref = 20
+        Q10 = 2.
+        T_ref = 20.
 
-        if sucrose <= 0 or mstruct <=0:
-            R_residual = 0
+        if sucrose <= 0. or mstruct <= 0.:
+            R_residual = 0.
         else:
             conc_sucrose = sucrose / mstruct
-            R_residual = ((cls.KM_MAX * conc_sucrose)/(cls.KM + conc_sucrose)) * Ntot * Q10**((Ts - T_ref)/10) * cls.SECOND_TO_HOUR_RATE_CONVERSION
+            R_residual = ((cls.KM_MAX * conc_sucrose) / (cls.KM + conc_sucrose)) * Ntot * Q10 ** ((Ts - T_ref) / 10) * cls.SECOND_TO_HOUR_RATE_CONVERSION
 
         rm = 0.004208754
-        R_maintenance = rm*mstruct * Q10**((Ts - T_ref)/10) * cls.SECOND_TO_HOUR_RATE_CONVERSION
+        R_maintenance = rm * mstruct * Q10 ** ((Ts - T_ref) / 10) * cls.SECOND_TO_HOUR_RATE_CONVERSION
         return R_residual, R_maintenance

@@ -15,13 +15,4 @@
     .. seealso:: Barillot et al. 2016.
 """
 
-"""
-    Information about this versioned file:
-        $LastChangedBy$
-        $LastChangedDate$
-        $LastChangedRevision$
-        $URL$
-        $Id$
-"""
-
 __version__ = '1.0'

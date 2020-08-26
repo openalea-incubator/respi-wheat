@@ -40,9 +40,6 @@ if sys.version_info < (2, 7):
     print('ERROR: Respi-Wheat requires at least Python 2.7 to run.')
     sys.exit(1)
 
-if sys.version_info >= (3, 0):
-    print('WARNING: Respi-Wheat has not been tested with Python 3.')
-
 setup(
     name="Respi-Wheat",
     version=respiwheat.__version__,
